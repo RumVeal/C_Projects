@@ -1,0 +1,15 @@
+*.o
+*.out
+*.exe
+*.a
+*.so
+*.dll
+*.dylib
+*.log
+*.tmp
+*.swp
+*~
+.vscode/
+.idea/
+*.code-workplace
+.DS_Store
