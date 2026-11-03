@@ -66,11 +66,12 @@ void find_by_name(students ex_st[]){
 	int count = 0, r = 1;
 	while(r){
 		printf("이름을 입력하세요: ");
-		scanf("%s", name);
+		scanf("%14s", name);
 		for (int i =0; i < N; i++){
 			if (strcmp(name, ex_st[i].name) == 0){
 				count = 1;
 				save_i = i;
+				break;
 		 	}
 		}	
 		if (count == 1){
@@ -107,7 +108,7 @@ int main(void){
 		printf("3.키 내림차순 출력       4.이름 검색\n");
 		printf("5.종료\n\n\n");
 		printf("번호를 선택하세요: ");
-		scanf("%s", ch_number);
+		scanf("%9s", ch_number);
 		number = atoi(ch_number);
 
 	

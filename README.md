@@ -15,3 +15,14 @@ The repository is divided into **Mini_Projects** (small, single-file programs) a
   - (to be added later)
 
 ---
+
+## ▶️ Build & run
+Each mini project is a single file:
+```bash
+cd Mini_Projects/Addition_30_Digit
+gcc -Wall -o main main.c
+./main
+```
+Lotto and TicTacToe use `termios.h`, so they run on macOS / Linux.
+
+---

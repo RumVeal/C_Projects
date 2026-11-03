@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <termio.h>
+#include <termios.h>
 #define N 5
 #define CHECK_HOR(x) (x[0] != ' ' && x[0] == x[2] && x[2] == x[4])  
 #define CHECK_VER(x) (a[x] != ' ' && a[x] == c[x] && c[x] == e[x])
@@ -23,11 +23,12 @@ int getch(void) {
 }
 
 void arr_pr(char *a, char *b, char *c, char *d, char *e, int size){
-	for (int i = 0; i < size; i++) printf("%c", a[i]); printf("\n");
-	for (int i = 0; i < size; i++) printf("%c", b[i]); printf("\n");
-	for (int i = 0; i < size; i++) printf("%c", c[i]); printf("\n");
-	for (int i = 0; i < size; i++) printf("%c", d[i]); printf("\n");
-	for (int i = 0; i < size; i++) printf("%c", e[i]); printf("\n");
+	char *rows[] = {a, b, c, d, e};
+	for (int r = 0; r < 5; r++) {
+		for (int i = 0; i < size; i++)
+			printf("%c", rows[r][i]);
+		printf("\n");
+	}
 }
 
 int check_res(char *a, char *b, char *c, char *d, char *e, int size){
@@ -46,7 +47,7 @@ int main(void){
 	char d[N] = {'-','.','-','.','-'};
 	char e[N] = {' ','|',' ','|',' '};
 	char pos_ch;
-	int pos_int, count, game = 1, player = 1, len = 0;;
+	int pos_int, count, game = 1, player = 1, len = 0;
 
 
 	while(game){
@@ -54,6 +55,12 @@ int main(void){
 		printf("Player %d:\n", player);
 		arr_pr(a, b, c, d, e, N);
 		pos_ch = getch();
+
+		/* 1~9 이외의 키는 무시 */
+		if (pos_ch < '1' || pos_ch > '9') {
+			system("clear");
+			continue;
+		}
 
 		for (int i = 0; i < len; i++){
 			if (check_num[i] == pos_ch)
