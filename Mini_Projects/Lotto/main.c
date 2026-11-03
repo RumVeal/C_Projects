@@ -19,13 +19,11 @@ int getch(void) {
 	tcsetattr(0, TCSAFLUSH, &save);
 	return ch;
 }
-void lotto_game(int num[L], int ticket[N][M], int column, int str){
-	int count = 0, count_bon = 0, correct = 0, count_out = 0, flag;
+void lotto_game(int num[L], int ticket[N][M]){
+	int count_bon = 0, correct = 0, count_out = 0;
 	printf("로또 당첨 결과는 다음과 같습니다.\n\n\n");
 	for (int i = 0; i < N; i++){
-		flag = 0;
 		count_out = 0;
-		count = 0;
 		count_bon = 0;
 		printf("%d 세트 번호 (", i+1);
 		for (int j = 0; j < M; j++){
@@ -55,7 +53,7 @@ void lotto_game(int num[L], int ticket[N][M], int column, int str){
 				printf("X ");
 		}
 		if (count_bon > 0)
-			printf(" (2등 당점)\n");
+			printf(" (2등 당첨)\n");
 		else if (count_out < 3)
 			printf(" (낙첨)\n");
 		else if (count_out == 3)
@@ -94,7 +92,7 @@ int main(void){
 	scanf("%d", &num[L-1]);
 	sleep(2);
 	system("clear");
-	lotto_game(num, ticket, N, L);
+	lotto_game(num, ticket);
 	printf("\n\n");
 	printf("프로그램을 종료하시려면 esc 키를 누르세요.\n");
 	getchar();
